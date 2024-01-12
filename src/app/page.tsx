@@ -1,11 +1,15 @@
 import Navbar from "@/components/navbar";
+import { buttonVariants } from "@/components/ui/button";
+import Link from "next/link";
 
 function Home() {
   return (
     <>
       <Navbar />
-      <br />
       <h1 className="text-4xl font-bold">Hello World</h1>
+      <Link href="/admin" className={buttonVariants()}>
+        Open my admin
+      </Link>
     </>
   );
 }
