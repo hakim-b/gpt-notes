@@ -5,7 +5,7 @@ import { ModeToggle } from "./mode-toggle";
 
 const Navbar = () => {
   return (
-    <header className="shadow-md border p-3 sm:p-5 w-full">
+    <header className="shadow-md border-2 p-3 sm:p-5 w-full">
       <div className="container flex items-center justify-between">
         <Link href="/" className="flex items-center">
           <Brain className="h-8 w-8" />
