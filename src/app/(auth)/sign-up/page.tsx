@@ -1,11 +1,7 @@
-import SignInForm from "@/components/sign-in-form";
+import SignUpForm from "@/components/sign-up-form";
 
 const SignUp = () => {
-  return (
-    <div className="w-full">
-      <SignInForm />
-    </div>
-  );
+  return <SignUpForm />;
 };
 
 export default SignUp;

@@ -4,7 +4,8 @@ function Home() {
   return (
     <>
       <Navbar />
-      <h1 className="text-4xl font-bold p-2">Hello World</h1>
+      <br />
+      <h1 className="text-4xl font-bold">Hello World</h1>
     </>
   );
 }
