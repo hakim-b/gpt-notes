@@ -3,6 +3,8 @@ import "./globals.css";
 import { ReactNode } from "react";
 import { GeistSans } from "geist/font/sans";
 import { ThemeProvider } from "@/components/theme-provider";
+import Navbar from "@/components/navbar";
+import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   title: "GPT-Notes",
@@ -27,7 +29,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
           enableSystem
           disableTransitionOnChange
         >
+          <Navbar />
           {children}
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>
