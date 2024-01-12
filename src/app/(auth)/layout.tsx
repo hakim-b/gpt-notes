@@ -1,3 +1,4 @@
+import { Card, CardContent } from "@/components/ui/card";
 import { FC, ReactNode } from "react";
 
 interface AuthLayoutProps {
@@ -5,7 +6,11 @@ interface AuthLayoutProps {
 }
 
 const AuthLayout: FC<AuthLayoutProps> = ({ children }) => {
-  return <div className="p-10 rounded-md">{children}</div>;
+  return (
+    <Card className="flex justify-center items-center h-screen">
+      <CardContent>{children}</CardContent>
+    </Card>
+  );
 };
 
 export default AuthLayout;
