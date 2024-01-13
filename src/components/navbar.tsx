@@ -1,14 +1,9 @@
 import Link from "next/link";
-import { buttonVariants } from "./ui/button";
 import { Brain } from "lucide-react";
 import { ModeToggle } from "./mode-toggle";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
 import SignOutButton from "./sign-out-button";
 
 const Navbar = async () => {
-  const session = await getServerSession(authOptions);
-
   return (
     <header className="shadow-md border-2 p-3 sm:p-5 w-full">
       <div className="container flex items-center justify-between">
@@ -20,14 +15,7 @@ const Navbar = async () => {
         </Link>
         <div className="flex items-center space-x-4">
           <ModeToggle />
-
-          {session?.user ? (
-            <SignOutButton />
-          ) : (
-            <Link className={buttonVariants()} href="/sign-in">
-              Sign in
-            </Link>
-          )}
+          <SignOutButton />
         </div>
       </div>
     </header>
