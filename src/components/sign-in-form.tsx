@@ -14,10 +14,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import Link from "next/link";
-import GoogleSignInButton from "./google-sign-in-button";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useToast } from "./ui/use-toast";
+import { Separator } from "./ui/separator";
+import GoogleSignInButton from "./google-sign-in-button";
 
 const FormSchema = z.object({
   email: z.string().min(1, "Email is required").email("Invalid email"),
@@ -97,9 +98,13 @@ const SignInForm = () => {
           Sign in
         </Button>
       </form>
-      <div className="mx-auto my-4 flex w-full items-center justify-evenly before:mr-4 before:block before:h-px before:flex-grow before:bg-stone-400 after:ml-4 after:block after:h-px after:flex-grow after:bg-stone-400">
-        or
+      <br />
+      <div className="flex justify-center gap-2 items-center">
+        <Separator className="w-36" orientation="horizontal"/>
+        <span className="text-medium">OR</span>
+        <Separator className="w-36" orientation="horizontal"/>
       </div>
+      <br />
       <GoogleSignInButton>Sign in with Google</GoogleSignInButton>
       <p className="text-center text-sm text-gray-600 mt-2">
         If you don&apos;t have an account, please&nbsp;

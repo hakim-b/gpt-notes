@@ -1,17 +1,28 @@
-import { FC, ReactNode } from "react";
+"use client";
+
+import { ReactNode } from "react";
 import { Button } from "./ui/button";
+import { signIn } from "next-auth/react";
+import { Icon } from "@iconify/react";
 
-interface GoogleSignInButtonProps {
+type GoogleSignInButtonProps = {
   children: ReactNode;
-}
-const GoogleSignInButton: FC<GoogleSignInButtonProps> = ({ children }) => {
-  const loginWithGoogle = () => console.log("login with google");
-
-  return (
-    <Button onClick={loginWithGoogle} className="w-full">
-      {children}
-    </Button>
-  );
 };
+
+function GoogleSignInButton({ children }: GoogleSignInButtonProps) {
+  return (
+    <>
+      <Button
+        onClick={() =>
+          signIn("google", { callbackUrl: "http://localhost:3000/" })
+        }
+        className="w-full"
+      >
+        <Icon icon="bi:google" /> &nbsp;&nbsp;
+        {children}
+      </Button>
+    </>
+  );
+}
 
 export default GoogleSignInButton;

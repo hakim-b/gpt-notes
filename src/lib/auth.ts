@@ -1,13 +1,14 @@
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import GoogleProvider from "next-auth/providers/google";
 import prisma from "./db";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { compare } from "bcrypt";
-import { serverEnv } from "@/env/server";
+import { env } from "@/env/server";
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
-  secret: serverEnv.NEXTAUTH_SECRET,
+  secret: env.NEXTAUTH_SECRET,
   session: {
     strategy: "jwt",
   },
@@ -38,12 +39,13 @@ export const authOptions: NextAuthOptions = {
           return null;
         }
 
-        const passwordMatch = await compare(
-          credentials.password,
-          existingUser.password
-        );
-
-        if (!passwordMatch) {
+        if (existingUser.password) {
+          const passwordMatch = await compare(
+            credentials.password,
+            existingUser.password
+          );
+          if (!passwordMatch) return null;
+        } else {
           return null;
         }
 
@@ -53,6 +55,10 @@ export const authOptions: NextAuthOptions = {
           email: existingUser.email,
         };
       },
+    }),
+    GoogleProvider({
+      clientId: env.GOOGLE_CLIENT_ID,
+      clientSecret: env.GOOGLE_CLIENT_SECRET,
     }),
   ],
   callbacks: {

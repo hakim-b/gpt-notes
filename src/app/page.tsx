@@ -13,7 +13,9 @@ async function Home() {
   return (
     <>
       <Navbar />
-      <h1 className="text-4xl font-bold">Hello {session.user.username}</h1>
+      <h1 className="text-4xl font-bold">
+        Hello {session.user.username || session.user.name}
+      </h1>
     </>
   );
 }
