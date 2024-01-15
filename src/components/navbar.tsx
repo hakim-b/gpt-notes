@@ -3,7 +3,7 @@ import { Brain } from "lucide-react";
 import { ModeToggle } from "./mode-toggle";
 import SignOutButton from "./sign-out-button";
 
-const Navbar = async () => {
+const Navbar = () => {
   return (
     <header className="shadow-md border-2 p-3 sm:p-5 w-full">
       <div className="container flex items-center justify-between">
