@@ -9,7 +9,7 @@ function NotesLayout({ children }: NotesLayoutProps) {
   return (
     <>
       <Navbar />
-      {children}
+      <main className="m-auto max-w-7xl p-4">{children}</main>
     </>
   );
 }
