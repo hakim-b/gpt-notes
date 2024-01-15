@@ -14,7 +14,7 @@ function GoogleSignInButton({ children }: GoogleSignInButtonProps) {
     <>
       <Button
         onClick={() =>
-          signIn("google", { callbackUrl: "http://localhost:3000/" })
+          signIn("google", { callbackUrl: "http://localhost:3000/notes/" })
         }
         className="w-full"
       >
