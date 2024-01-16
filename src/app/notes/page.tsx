@@ -9,13 +9,7 @@ async function Notes() {
     redirect("/sign-in?callbackUrl=/");
   }
 
-  return (
-    <>
-      <h1 className="text-4xl font-bold">
-        Here are your notes {session.user.username || session.user.name}
-      </h1>
-    </>
-  );
+  return <></>;
 }
 
 export default Notes;

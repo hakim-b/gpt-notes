@@ -8,7 +8,8 @@ import ClientSessionProvider from "@/components/client-session-provider";
 
 export const metadata: Metadata = {
   title: "GPT-Notes",
-  description: "Built with Next.js, Shadcn UI, Vercel Postgres and Pinecone",
+  description:
+    "An intelligent AI app built with Next.js, Shadcn UI, Vercel Postgres and Pinecone",
 };
 
 type RootLayoutProps = {
@@ -16,7 +17,6 @@ type RootLayoutProps = {
 };
 
 export default async function RootLayout({ children }: RootLayoutProps) {
-
   return (
     <html
       lang="en"

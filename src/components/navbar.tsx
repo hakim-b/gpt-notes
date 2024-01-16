@@ -1,11 +1,7 @@
+"use client";
+
 import Link from "next/link";
-import { metadata } from "@/app/layout";
-import Image from "next/image";
-import logo from "@/app/favicon.ico";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import { getInitials } from "@/lib/utils";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,37 +11,55 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import SignOutMenuItem from "./sign-out-menu-item";
+import { Button } from "./ui/button";
+import { Brain, Plus } from "lucide-react";
+import { useSession } from "next-auth/react";
+import { getInitials } from "@/lib/utils";
+import { useState } from "react";
+import AddNoteDialog from "./add-note-dialog";
 
-const Navbar = async () => {
-  const session = await getServerSession(authOptions);
+const Navbar = () => {
+  const { data: session } = useSession();
   const initials = getInitials(session?.user.username || session?.user.name);
 
+  const [showAddNoteDialog, setShowAddNoteDialog] = useState(false);
+
   return (
-    <div className="p-4 shadow">
-      <div className="m-auto flex max-w-7xl flex-wrap items-center justify-between gap-3">
-        <Link href="/notes" className="flex items-center gap-1">
-          <Image src={logo} alt="Flowbrain logo" width={40} height={40} />
-          <span className="font-bold">{metadata.title as string}</span>
-        </Link>
-        <div className="flex items-center gap-2">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Avatar>
-                <AvatarImage src={session?.user.image as string} />
-                <AvatarFallback>{initials}</AvatarFallback>
-              </Avatar>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-56">
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuGroup>
-                <SignOutMenuItem />
-              </DropdownMenuGroup>
-            </DropdownMenuContent>
-          </DropdownMenu>
+    <>
+      <div className="p-4 shadow dark:border">
+        <div className="m-auto flex max-w-7xl flex-wrap items-center justify-between gap-3">
+          <Link href="/notes" className="flex items-center gap-1">
+            <Brain />
+            <span className="font-bold">GPT-Notes</span>
+          </Link>
+          <div className="flex items-center gap-2">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Avatar>
+                  <AvatarImage src={session?.user.image as string} />
+                  <AvatarFallback>{initials}</AvatarFallback>
+                </Avatar>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-56">
+                <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuGroup>
+                  <SignOutMenuItem />
+                </DropdownMenuGroup>
+              </DropdownMenuContent>
+            </DropdownMenu>
+            <Button
+              variant="secondary"
+              onClick={() => setShowAddNoteDialog(true)}
+            >
+              <Plus size={20} className="mr-2" />
+              Add Note
+            </Button>
+          </div>
         </div>
       </div>
-    </div>
+      <AddNoteDialog open={showAddNoteDialog} setOpen={setShowAddNoteDialog} />
+    </>
   );
 };
 

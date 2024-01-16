@@ -2,6 +2,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
+import { Brain } from "lucide-react";
 import { metadata } from "./layout";
 
 async function Home() {
@@ -13,13 +14,22 @@ async function Home() {
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <div className="space-y-2">
+              <center>
+                <Brain size={50} />
+              </center>
               <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl">
                 Welcome to {metadata.title as string}!
               </h1>
+              <p className="max-w-[600px] text-gray-500 dark:text-gray-400 md:text-xl">
+                {metadata.description}
+              </p>
             </div>
             <div className="flex flex-col gap-2 min-[400px]:flex-row">
               {session ? (
-                <Link className={buttonVariants()} href="/notes/">
+                <Link
+                  className={buttonVariants({ variant: "secondary" })}
+                  href="/notes/"
+                >
                   Open Notes
                 </Link>
               ) : (
