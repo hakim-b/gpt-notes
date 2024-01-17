@@ -3,7 +3,7 @@
 import { ReactNode } from "react";
 import { Button } from "./ui/button";
 import { signIn } from "next-auth/react";
-import { Icon } from "@iconify/react";
+import GoogleLogo from "@/assets/google.svg";
 
 type GoogleSignInButtonProps = {
   children: ReactNode;
@@ -18,7 +18,7 @@ function GoogleSignInButton({ children }: GoogleSignInButtonProps) {
         }
         className="w-full"
       >
-        <Icon icon="bi:google" /> &nbsp;&nbsp;
+        <GoogleLogo /> &nbsp;&nbsp;
         {children}
       </Button>
     </>

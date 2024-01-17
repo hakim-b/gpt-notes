@@ -6,14 +6,15 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
+  DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
+  DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import SignOutMenuItem from "./sign-out-menu-item";
 import { Button } from "./ui/button";
-import { Brain, Plus } from "lucide-react";
-import { useSession } from "next-auth/react";
+import { Brain, LogOut, Plus } from "lucide-react";
+import { signOut, useSession } from "next-auth/react";
 import { getInitials } from "@/lib/utils";
 import { useState } from "react";
 import NoteDialog from "./note-dialog";
@@ -43,10 +44,23 @@ const Navbar = () => {
                 </Avatar>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="w-56">
-                <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                <DropdownMenuLabel>
+                  {session?.user.username || session?.user.name}
+                </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
-                  <SignOutMenuItem />
+                  <DropdownMenuItem
+                    onClick={() =>
+                      signOut({
+                        redirect: true,
+                        callbackUrl: `${window.location.origin}/sign-in`,
+                      })
+                    }
+                  >
+                    <LogOut className="mr-2 h-4 w-4" />
+                    <span>Log out</span>
+                    <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+                  </DropdownMenuItem>
                 </DropdownMenuGroup>
               </DropdownMenuContent>
             </DropdownMenu>
