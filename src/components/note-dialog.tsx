@@ -22,6 +22,7 @@ import LoadingButton from "./ui/loading-button";
 import { useToast } from "./ui/use-toast";
 import { useRouter } from "next/navigation";
 import { Note } from "@prisma/client";
+import { useState } from "react";
 
 type NoteDialogProps = {
   open: boolean;
@@ -38,8 +39,8 @@ function NoteDialog({ open, setOpen, notetoEdit }: NoteDialogProps) {
     },
   });
 
+  const [deleteInProgress, setDeleteInProgress] = useState(false);
   const { toast } = useToast();
-
   const router = useRouter();
 
   const onSubmit = async (input: CreateNote) => {
@@ -80,12 +81,43 @@ function NoteDialog({ open, setOpen, notetoEdit }: NoteDialogProps) {
     }
   };
 
+  const deleteNote = async () => {
+    if (!notetoEdit) {
+      return;
+    }
+
+    setDeleteInProgress(true);
+
+    try {
+      const response = await fetch("/api/notes", {
+        method: "DELETE",
+        body: JSON.stringify({ id: notetoEdit.id }),
+      });
+
+      if (!response.ok) {
+        throw Error(`Status code: ${response.status}`);
+      }
+
+      router.refresh();
+      setOpen(false);
+    } catch (error) {
+      console.error(error);
+      toast({
+        title: "Error",
+        description: "Oops! Something went wrong",
+        variant: "destructive",
+      });
+    } finally {
+      setDeleteInProgress(true);
+    }
+  };
+
   return (
     <>
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Add Note</DialogTitle>
+            <DialogTitle>{notetoEdit ? "Edit Note" : "Add Note"}</DialogTitle>
           </DialogHeader>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
@@ -115,10 +147,22 @@ function NoteDialog({ open, setOpen, notetoEdit }: NoteDialogProps) {
                   </FormItem>
                 )}
               />
-              <DialogFooter>
+              <DialogFooter className="gap-1 sm:gap-0">
+                {notetoEdit && (
+                  <LoadingButton
+                    variant="destructive"
+                    loading={deleteInProgress}
+                    disabled={form.formState.isSubmitting}
+                    onClick={deleteNote}
+                    type="button"
+                  >
+                    Delete Note
+                  </LoadingButton>
+                )}
                 <LoadingButton
                   type="submit"
                   loading={form.formState.isSubmitting}
+                  disabled={deleteInProgress}
                 >
                   Submit
                 </LoadingButton>
