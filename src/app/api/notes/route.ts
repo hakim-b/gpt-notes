@@ -54,7 +54,7 @@ export async function POST(req: Request) {
         },
       });
 
-      const userId: RecordMetadataValue = session.user.id;
+      const userId: RecordMetadataValue = newNote.userId;
 
       await notesIndex.upsert([
         { id: newNote?.id as string, values: embedding, metadata: { userId } },
@@ -100,9 +100,21 @@ export async function PUT(req: Request) {
       );
     }
 
-    const updatedNote = await prisma?.note.update({
-      where: { id },
-      data: { title, content },
+    const embedding = await getEmbeddingForNote(title, content);
+
+    const updatedNote = await prisma?.$transaction(async (tx) => {
+      const newlyUpdatedNote = await tx.note.update({
+        where: { id },
+        data: { title, content },
+      });
+
+      const userId: RecordMetadataValue = newlyUpdatedNote.userId;
+
+      await notesIndex.upsert([
+        { id, values: embedding, metadata: { userId } },
+      ]);
+
+      return newlyUpdatedNote;
     });
 
     return Response.json({ updatedNote }, { status: 200 });
@@ -142,7 +154,10 @@ export async function DELETE(req: Request) {
       );
     }
 
-    await prisma?.note.delete({ where: { id } });
+    await prisma?.$transaction(async (tx) => {
+      await tx.note.delete({ where: { id } });
+      await notesIndex.deleteOne(id)
+    });
 
     return Response.json({ message: "Note deleted" }, { status: 200 });
   } catch (error) {
