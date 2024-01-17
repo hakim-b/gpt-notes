@@ -17,7 +17,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useToast } from "./ui/use-toast";
 import { Separator } from "./ui/separator";
-import GoogleSignInButton from "./google-sign-in-button";
+import GoogleLogo from "@/assets/google.svg";
+import { signIn } from "next-auth/react";
 
 const FormSchema = z
   .object({
@@ -137,19 +138,26 @@ const SignUpForm = () => {
             )}
           />
         </div>
-        <Button className="w-full mt-6" type="submit">
+        <Button className="mt-6 w-full" type="submit">
           Sign up
         </Button>
       </form>
-       <br />
-      <div className="flex justify-center gap-2 items-center">
-        <Separator className="w-36" orientation="horizontal"/>
+      <br />
+      <div className="flex items-center justify-center gap-2">
+        <Separator className="w-36" orientation="horizontal" />
         <span className="text-medium">OR</span>
-        <Separator className="w-36" orientation="horizontal"/>
+        <Separator className="w-36" orientation="horizontal" />
       </div>
       <br />
-      <GoogleSignInButton>Continue with Google</GoogleSignInButton>
-      <p className="text-center text-sm text-gray-600 mt-2">
+      <Button
+        onClick={() =>
+          signIn("google", { callbackUrl: "http://localhost:3000/notes/" })
+        }
+        className="w-full"
+      >
+        <GoogleLogo /> &nbsp;&nbsp; Continue with Google
+      </Button>
+      <p className="mt-2 text-center text-sm text-gray-600">
         If you already have an account, please&nbsp;
         <Link className="text-blue-500 hover:underline" href="/sign-in">
           Sign in
