@@ -1,6 +1,6 @@
 "use client";
 
-import { Note as NoteModel } from "@prisma/client";
+import { Note } from "@prisma/client";
 import {
   Card,
   CardContent,
@@ -11,11 +11,11 @@ import {
 import { useState } from "react";
 import NoteDialog from "./note-dialog";
 
-type NoteProps = {
-  note: NoteModel;
+type NoteCardProps = {
+  note: Note;
 };
 
-function Note({ note }: NoteProps) {
+function NoteCard({ note }: NoteCardProps) {
   const [showEditDialog, setShowEditDialog] = useState(false);
   const wasUpdated = note.updatedAt > note.createdAt;
   const properTimestamp = (
@@ -48,4 +48,4 @@ function Note({ note }: NoteProps) {
   );
 }
 
-export default Note;
+export default NoteCard;

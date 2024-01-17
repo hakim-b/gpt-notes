@@ -1,4 +1,4 @@
-import Note from "@/components/note";
+import NoteCard from "@/components/note-card";
 import { authOptions } from "@/lib/auth";
 import { Metadata } from "next";
 import { getServerSession } from "next-auth";
@@ -23,7 +23,7 @@ async function Notes() {
   return (
     <>
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-        {allNotes?.map((note) => <Note note={note} key={note.id} />)}
+        {allNotes?.map((note) => <NoteCard note={note} key={note.id} />)}
       </div>
       {allNotes?.length === 0 && (
         <h2 className="col-span-full text-center text-2xl font-bold">

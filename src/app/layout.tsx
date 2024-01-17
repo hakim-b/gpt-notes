@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ReactNode } from "react";
 import { GeistSans } from "geist/font/sans";
-import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeProvider } from "@/context/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
-import ClientSessionProvider from "@/components/client-session-provider";
+import ClientSessionProvider from "@/context/client-session-provider";
 
 export const metadata: Metadata = {
   title: {
