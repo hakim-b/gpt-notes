@@ -6,3 +6,11 @@ export const createNoteSchema = z.object({
 });
 
 export type CreateNote = z.infer<typeof createNoteSchema>;
+
+export const updateNoteSchema = createNoteSchema.extend({
+  id: z.string().cuid(),
+});
+
+export const deleteNoteSchema = z.object({
+  id: z.string().cuid(),
+});

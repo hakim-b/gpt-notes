@@ -1,4 +1,4 @@
-import { CreateNote, createNoteSchema } from "@/types/note";
+import { CreateNote, createNoteSchema } from "@/types/notes-crud";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import {
@@ -21,18 +21,20 @@ import { Textarea } from "./ui/textarea";
 import LoadingButton from "./ui/loading-button";
 import { useToast } from "./ui/use-toast";
 import { useRouter } from "next/navigation";
+import { Note } from "@prisma/client";
 
-type AddNoteDialogProps = {
+type NoteDialogProps = {
   open: boolean;
   setOpen: (open: boolean) => void;
+  notetoEdit?: Note;
 };
 
-function AddNoteDialog({ open, setOpen }: AddNoteDialogProps) {
+function NoteDialog({ open, setOpen, notetoEdit }: NoteDialogProps) {
   const form = useForm<CreateNote>({
     resolver: zodResolver(createNoteSchema),
     defaultValues: {
-      title: "",
-      content: "",
+      title: notetoEdit?.title || "",
+      content: notetoEdit?.content || "",
     },
   });
 
@@ -42,16 +44,30 @@ function AddNoteDialog({ open, setOpen }: AddNoteDialogProps) {
 
   const onSubmit = async (input: CreateNote) => {
     try {
-      const response = await fetch("/api/notes/", {
-        method: "POST",
-        body: JSON.stringify(input),
-      });
+      if (notetoEdit) {
+        const response = await fetch("/api/notes", {
+          method: "PUT",
+          body: JSON.stringify({
+            id: notetoEdit.id,
+            ...input,
+          }),
+        });
 
-      if (!response.ok) {
-        throw Error(`Status code: ${response.status}`);
+        if (!response.ok) {
+          throw Error(`Status code: ${response.status}`);
+        }
+      } else {
+        const response = await fetch("/api/notes/", {
+          method: "POST",
+          body: JSON.stringify(input),
+        });
+
+        if (!response.ok) {
+          throw Error(`Status code: ${response.status}`);
+        }
+
+        form.reset();
       }
-
-      form.reset();
       router.refresh();
       setOpen(false);
     } catch (error) {
@@ -115,4 +131,4 @@ function AddNoteDialog({ open, setOpen }: AddNoteDialogProps) {
   );
 }
 
-export default AddNoteDialog;
+export default NoteDialog;

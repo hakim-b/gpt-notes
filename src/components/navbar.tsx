@@ -16,7 +16,8 @@ import { Brain, Plus } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { getInitials } from "@/lib/utils";
 import { useState } from "react";
-import AddNoteDialog from "./add-note-dialog";
+import NoteDialog from "./note-dialog";
+import { ModeToggle } from "./mode-toggle";
 
 const Navbar = () => {
   const { data: session } = useSession();
@@ -32,7 +33,8 @@ const Navbar = () => {
             <Brain />
             <span className="font-bold">GPT-Notes</span>
           </Link>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
+            <ModeToggle />
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Avatar>
@@ -58,7 +60,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      <AddNoteDialog open={showAddNoteDialog} setOpen={setShowAddNoteDialog} />
+      <NoteDialog open={showAddNoteDialog} setOpen={setShowAddNoteDialog} />
     </>
   );
 };
