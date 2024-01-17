@@ -1,5 +1,10 @@
 import SignUpForm from "@/components/sign-up-form";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Sign Up",
+};
 
 const SignUp = () => {
   return (

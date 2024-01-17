@@ -7,7 +7,10 @@ import { Toaster } from "@/components/ui/toaster";
 import ClientSessionProvider from "@/components/client-session-provider";
 
 export const metadata: Metadata = {
-  title: "GPT-Notes",
+  title: {
+    default: "GPT-Notes",
+    template: "%s | GPT-Notes",
+  },
   description:
     "An intelligent AI app built with Next.js, Shadcn UI, Vercel Postgres and Pinecone",
 };

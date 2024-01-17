@@ -3,7 +3,11 @@ import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
 import { Brain } from "lucide-react";
-import { metadata } from "./layout";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Home"
+}
 
 async function Home() {
   const session = await getServerSession(authOptions);
@@ -18,10 +22,11 @@ async function Home() {
                 <Brain size={50} />
               </center>
               <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                Welcome to {metadata.title as string}!
+                Welcome to GPT-Notes!
               </h1>
               <p className="max-w-[600px] text-gray-500 dark:text-gray-400 md:text-xl">
-                {metadata.description}
+                An intelligent AI app built with Next.js, Shadcn UI, Vercel
+                Postgres and Pinecone
               </p>
             </div>
             <div className="flex flex-col gap-2 min-[400px]:flex-row">
