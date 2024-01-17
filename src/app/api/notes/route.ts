@@ -1,10 +1,13 @@
 import { authOptions } from "@/lib/auth";
+import { getVectorEmbedding } from "@/lib/open-ai";
+import { notesIndex } from "@/lib/pinecone";
 import {
   createNoteSchema,
   deleteNoteSchema,
   updateNoteSchema,
 } from "@/types/notes-crud";
-import { getServerSession } from "next-auth";
+import { RecordMetadataValue } from "@pinecone-database/pinecone";
+import { Session, getServerSession } from "next-auth";
 
 export async function POST(req: Request) {
   try {
@@ -25,6 +28,8 @@ export async function POST(req: Request) {
       return Response.json({ error: "Unauthorized!" }, { status: 401 });
     }
 
+    const embedding = await getEmbeddingForNote(title, content);
+
     const connectObj =
       session.user.username === null
         ? {
@@ -38,17 +43,27 @@ export async function POST(req: Request) {
             email: session.user.email as string,
           };
 
-    const newNote = await prisma?.note.create({
-      data: {
-        title,
-        content,
-        user: {
-          connect: connectObj,
+    const note = await prisma?.$transaction(async (tx) => {
+      const newNote = await tx.note.create({
+        data: {
+          title,
+          content,
+          user: {
+            connect: connectObj,
+          },
         },
-      },
+      });
+
+      const userId: Session | RecordMetadataValue = session.user.id;
+
+      await notesIndex.upsert([
+        { id: newNote?.id as string, values: embedding, metadata: { userId } },
+      ]);
+
+      return newNote;
     });
 
-    return Response.json({ newNote }, { status: 201 });
+    return Response.json({ note }, { status: 201 });
   } catch (error) {
     console.error(error);
     return Response.json({ error: "Internal server error" }, { status: 500 });
@@ -134,4 +149,8 @@ export async function DELETE(req: Request) {
     console.error(error);
     return Response.json({ error: "Internal server error" }, { status: 500 });
   }
+}
+
+async function getEmbeddingForNote(title: string, content: string | undefined) {
+  return getVectorEmbedding(`${title} \n\n ${content ?? ""}`);
 }
