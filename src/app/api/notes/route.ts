@@ -7,7 +7,7 @@ import {
   updateNoteSchema,
 } from "@/types/notes-crud";
 import { RecordMetadataValue } from "@pinecone-database/pinecone";
-import { Session, getServerSession } from "next-auth";
+import { getServerSession } from "next-auth";
 
 export async function POST(req: Request) {
   try {
@@ -54,7 +54,7 @@ export async function POST(req: Request) {
         },
       });
 
-      const userId: Session | RecordMetadataValue = session.user.id;
+      const userId: RecordMetadataValue = session.user.id;
 
       await notesIndex.upsert([
         { id: newNote?.id as string, values: embedding, metadata: { userId } },
