@@ -13,6 +13,8 @@ export const env = createEnv({
     NEXTAUTH_SECRET: z.string(),
     GOOGLE_CLIENT_ID: z.string(),
     GOOGLE_CLIENT_SECRET: z.string(),
+    OPEN_AI_API_KEY: z.string(),
+    PINECONE_API_KEY: z.string(),
   },
 
   runtimeEnv: {
@@ -26,5 +28,7 @@ export const env = createEnv({
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
     GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
     GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
+    OPEN_AI_API_KEY: process.env.OPEN_AI_API_KEY,
+    PINECONE_API_KEY: process.env.PINECONE_API_KEY,
   },
 });
