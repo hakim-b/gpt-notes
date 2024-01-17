@@ -19,6 +19,7 @@ import { getInitials } from "@/lib/utils";
 import { useState } from "react";
 import NoteDialog from "./note-dialog";
 import { ModeToggle } from "./mode-toggle";
+import AIChatButton from "./ai-chat-buttton";
 
 const Navbar = () => {
   const { data: session } = useSession();
@@ -71,6 +72,7 @@ const Navbar = () => {
               <Plus size={20} className="mr-2" />
               Add Note
             </Button>
+            <AIChatButton />
           </div>
         </div>
       </div>
