@@ -107,7 +107,7 @@ const SignInForm = () => {
       <br />
       <Button
         onClick={() =>
-          signIn("google", { callbackUrl: "http://localhost:3000/notes/" })
+          signIn("google", { callbackUrl: `${window.location.origin}/notes/` })
         }
         className="w-full"
       >

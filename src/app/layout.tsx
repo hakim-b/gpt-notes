@@ -8,7 +8,7 @@ import ClientSessionProvider from "@/context/client-session-provider";
 import ogImg from "./opengraph-image.png";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("http://localhost:3000/"),
+  metadataBase: new URL("https://gpt-notes-ten.vercel.app/"),
   title: {
     default: "GPT-Notes",
     template: "%s | GPT-Notes",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "GPT-Notes",
     description:
-      "An intelligent AI app built with Next.js, Shadcn UI, Vercel Postgres and Pinecone",
+      "An intelligent AI Note-taking app built with Next.js, Shadcn UI, Vercel Postgres and Pinecone",
     images: [{ url: ogImg.src }],
   },
 };
