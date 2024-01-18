@@ -15,6 +15,7 @@ export const env = createEnv({
     GOOGLE_CLIENT_SECRET: z.string(),
     OPEN_AI_API_KEY: z.string(),
     PINECONE_API_KEY: z.string(),
+    VERCEL_URL: z.string().url(),
   },
 
   runtimeEnv: {
@@ -30,5 +31,6 @@ export const env = createEnv({
     GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
     OPEN_AI_API_KEY: process.env.OPEN_AI_API_KEY,
     PINECONE_API_KEY: process.env.PINECONE_API_KEY,
+    VERCEL_URL: process.env.VERCEL_URL,
   },
 });
