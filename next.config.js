@@ -1,9 +1,6 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
-
-module.exports = {
-  webpack(config) {
-    // Grab the existing rule that handles SVG imports
+const nextConfig = {
+  webpack: (config) => {
     const fileLoaderRule = config.module.rules.find((rule) =>
       rule.test?.test?.(".svg"),
     );
@@ -29,5 +26,13 @@ module.exports = {
 
     return config;
   },
-  nextConfig,
+  images: {
+    remotePatterns: [
+      {
+        hostname: "lh3.googleusercontent.com",
+      },
+    ],
+  },
 };
+
+module.exports = nextConfig;

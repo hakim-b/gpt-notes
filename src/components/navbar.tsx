@@ -35,7 +35,7 @@ const Navbar = () => {
             <Brain />
             <span className="font-bold">GPT-Notes</span>
           </Link>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center justify-center gap-4">
             <ModeToggle />
             <DropdownMenu>
               <DropdownMenuTrigger asChild>

@@ -6,8 +6,8 @@ import { Brain } from "lucide-react";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Home"
-}
+  title: "Home",
+};
 
 async function Home() {
   const session = await getServerSession(authOptions);
@@ -19,7 +19,7 @@ async function Home() {
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <div className="space-y-2">
               <center>
-                <Brain size={50} />
+                <Brain size={65} />
               </center>
               <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl">
                 Welcome to GPT-Notes!
