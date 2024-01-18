@@ -10,7 +10,7 @@ type ClientSessionProviderProps = {
 function ClientSessionProvider({ children }: ClientSessionProviderProps) {
   return (
     <>
-      <SessionProvider>{children}</SessionProvider>
+      <SessionProvider basePath="/api/auth">{children}</SessionProvider>
     </>
   );
 }
