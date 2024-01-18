@@ -5,14 +5,22 @@ import { GeistSans } from "geist/font/sans";
 import { ThemeProvider } from "@/context/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import ClientSessionProvider from "@/context/client-session-provider";
+import ogImg from "./opengraph-image.png";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("http://localhost:3000/"),
   title: {
     default: "GPT-Notes",
     template: "%s | GPT-Notes",
   },
   description:
     "An intelligent AI app built with Next.js, Shadcn UI, Vercel Postgres and Pinecone",
+  openGraph: {
+    title: "GPT-Notes",
+    description:
+      "An intelligent AI app built with Next.js, Shadcn UI, Vercel Postgres and Pinecone",
+    images: [{ url: ogImg.src }],
+  },
 };
 
 type RootLayoutProps = {
