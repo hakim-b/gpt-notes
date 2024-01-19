@@ -12,7 +12,7 @@ async function Notes() {
   const session = await getServerSession(authOptions);
 
   if (!session) {
-    redirect("/sign-in?callbackUrl=/");
+    redirect("/");
   }
 
   const allNotes = await prisma?.note.findMany({
