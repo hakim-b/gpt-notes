@@ -107,7 +107,7 @@ const SignInForm = () => {
       <br />
       <Button
         onClick={() =>
-          signIn("google", { callbackUrl: `${window.location.origin}/notes/` })
+          signIn("google", { callbackUrl: `${window.location.origin}/notes` })
         }
         className="w-full"
       >
