@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     template: "%s | GPT-Notes",
   },
   description:
-    "An intelligent AI app built with Next.js, Shadcn UI, Vercel Postgres and Pinecone",
+    "An intelligent AI note-taking app built with Next.js, Shadcn UI, Vercel Postgres and Pinecone",
   openGraph: {
     title: "GPT-Notes",
     description:
