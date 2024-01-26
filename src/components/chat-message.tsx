@@ -8,11 +8,9 @@ type MessageProps = {
   message: Pick<Message, "role" | "content">;
 };
 
-export default function ChatMessage({
-  message: { role, content },
-}: MessageProps) {
+export default function ChatMessage({ message }: MessageProps) {
   const { data: session } = useSession();
-  const isAIMsg = role === "assistant";
+  const isAIMsg = message.role === "assistant";
 
   return (
     <div
@@ -28,7 +26,7 @@ export default function ChatMessage({
           isAIMsg ? "bg-secondary" : "bg-primary text-primary-foreground",
         )}
       >
-        {content}
+        {message.content}
       </p>
       {!isAIMsg && session?.user.image && (
         <Image
