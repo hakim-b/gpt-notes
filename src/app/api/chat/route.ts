@@ -17,9 +17,11 @@ export async function POST(req: Request) {
     const session = await getServerSession();
     const userId = session?.user.id;
 
+    const allNotes = await prisma?.note.findMany({ where: { userId } });
+
     const vectorQueryResponse = await notesIndex.query({
       vector: embedding,
-      topK: 3,
+      topK: allNotes?.length as number,
       filter: { userId },
     });
 
@@ -30,18 +32,19 @@ export async function POST(req: Request) {
         },
       },
     });
+
     console.log("Relevant Notes");
     console.table(relevantNotes);
+
+    let strOut = "You are an intelligent note taking app.\n";
+    strOut += "You answer the user's question based on their existing notes\n";
+    strOut += "The relevant notes for this query are:\n";
 
     const formattedNotes = relevantNotes?.map((note) => {
       let str = `\nTitle: ${note.title}`;
       str += `Content: ${note.content}`;
       return str;
     });
-
-    let strOut = "You are an intelligent note taking app.\n";
-    strOut += "You answer the user's question based on their existing notes\n";
-    strOut += "The relevant notes for this query are:\n";
 
     const systemMessage: ChatCompletionMessage = {
       role: "assistant",
