@@ -156,7 +156,7 @@ export async function DELETE(req: Request) {
 
     await prisma?.$transaction(async (tx) => {
       await tx.note.delete({ where: { id } });
-      await notesIndex.deleteOne(id)
+      await notesIndex.deleteOne(id);
     });
 
     return Response.json({ message: "Note deleted" }, { status: 200 });
