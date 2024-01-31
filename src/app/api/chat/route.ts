@@ -3,6 +3,7 @@ import { notesIndex } from "@/lib/pinecone";
 import { getServerSession } from "next-auth";
 import { ChatCompletionMessage } from "openai/resources/index.mjs";
 import { OpenAIStream, StreamingTextResponse } from "ai";
+import { Note } from "@prisma/client";
 
 export async function POST(req: Request) {
   try {
@@ -40,7 +41,7 @@ export async function POST(req: Request) {
     strOut += "You answer the user's question based on their existing notes\n";
     strOut += "The relevant notes for this query are:\n";
 
-    const formattedNotes = relevantNotes?.map((note) => {
+    const formattedNotes = relevantNotes?.map((note: Note) => {
       let str = `\nTitle: ${note.title}`;
       str += `Content: ${note.content}`;
       return str;
