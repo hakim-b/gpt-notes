@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "GPT-Notes",
     description:
-      "An intelligent AI Note-taking app built with Next.js, Shadcn UI, Vercel Postgres and Pinecone",
+      "Take some notes and ask the chatbot some questions about your thoughts.",
     images: [{ url: ogImg.src }],
   },
 };

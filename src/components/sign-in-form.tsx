@@ -9,7 +9,7 @@ import {
   FormLabel,
   FormMessage,
 } from "./ui/form";
-import * as z from "zod";
+import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
@@ -28,11 +28,13 @@ const FormSchema = z.object({
     .min(8, "Password must have than 8 characters"),
 });
 
+type FormValues = z.infer<typeof FormSchema>;
+
 const SignInForm = () => {
   const router = useRouter();
   const { toast } = useToast();
 
-  const form = useForm<z.infer<typeof FormSchema>>({
+  const form = useForm<FormValues>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
       email: "",
@@ -40,7 +42,7 @@ const SignInForm = () => {
     },
   });
 
-  const onSubmit = async (values: z.infer<typeof FormSchema>) => {
+  const onSubmit = async (values: FormValues) => {
     const signInData = await signIn("credentials", {
       email: values.email,
       password: values.password,

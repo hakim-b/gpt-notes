@@ -4,6 +4,7 @@ import { getServerSession } from "next-auth";
 import Link from "next/link";
 import { Brain } from "lucide-react";
 import { Metadata } from "next";
+import GitHubLogo from "@/assets/fa--github-alt.svg";
 
 export const metadata: Metadata = {
   title: "Home",
@@ -28,6 +29,15 @@ async function Home() {
                 An intelligent AI app built with Next.js, Shadcn UI, Vercel
                 Postgres and Pinecone
               </p>
+            </div>
+            <div className="flex flex-col gap-2 min-[400px]:flex-row">
+              <Link
+                href="https://github.com/hakim-b/gpt-notes"
+                target="_blank"
+                className={buttonVariants({ variant: "outline" })}
+              >
+                <GitHubLogo /> &nbsp;&nbsp; Link to Repo
+              </Link>
             </div>
             <div className="flex flex-col gap-2 min-[400px]:flex-row">
               {session ? (

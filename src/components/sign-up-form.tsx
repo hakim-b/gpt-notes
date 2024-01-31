@@ -9,7 +9,7 @@ import {
   FormLabel,
   FormMessage,
 } from "./ui/form";
-import * as z from "zod";
+import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
@@ -20,7 +20,7 @@ import { Separator } from "./ui/separator";
 import GoogleLogo from "@/assets/google.svg";
 import { signIn } from "next-auth/react";
 
-const FormSchema = z
+const formSchema = z
   .object({
     username: z.string().min(1, "Username is required").max(100),
     email: z.string().min(1, "Email is required").email("Invalid email"),
@@ -35,12 +35,14 @@ const FormSchema = z
     message: "Password do not match",
   });
 
+type FormValues = z.infer<typeof formSchema>;
+
 const SignUpForm = () => {
   const router = useRouter();
   const { toast } = useToast();
 
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
+  const form = useForm<FormValues>({
+    resolver: zodResolver(formSchema),
     defaultValues: {
       username: "",
       email: "",
@@ -49,7 +51,7 @@ const SignUpForm = () => {
     },
   });
 
-  const onSubmit = async (values: z.infer<typeof FormSchema>) => {
+  const onSubmit = async (values: FormValues) => {
     const response = await fetch("/api/user", {
       method: "POST",
       headers: {
