@@ -43,7 +43,7 @@ export async function POST(req: Request) {
             email: session.user.email as string,
           };
 
-    const note = await prisma?.$transaction(async (tx) => {
+    const note = await prisma?.$transaction(async (tx: any) => {
       const newNote = await tx.note.create({
         data: {
           title,
@@ -102,7 +102,7 @@ export async function PUT(req: Request) {
 
     const embedding = await getEmbeddingForNote(title, content);
 
-    const updatedNote = await prisma?.$transaction(async (tx) => {
+    const updatedNote = await prisma?.$transaction(async (tx: any) => {
       const newlyUpdatedNote = await tx.note.update({
         where: { id },
         data: { title, content },
@@ -155,7 +155,7 @@ export async function DELETE(req: Request) {
     }
 
     await prisma?.$transaction(async (tx) => {
-      await tx.note.delete({ where: { id } });
+      await (tx as any).note.delete({ where: { id } });
       await notesIndex.deleteOne(id);
     });
 
