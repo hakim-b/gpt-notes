@@ -26,8 +26,8 @@ async function Home() {
                 Welcome to GPT-Notes!
               </h1>
               <p className="max-w-[600px] text-gray-500 dark:text-gray-400 md:text-xl">
-                An intelligent AI app built with Next.js, Shadcn UI, Vercel
-                Postgres and Pinecone
+                An intelligent AI app designed to enhance your productivity and
+                organization.
               </p>
             </div>
             <div className="flex flex-col gap-2 min-[400px]:flex-row">

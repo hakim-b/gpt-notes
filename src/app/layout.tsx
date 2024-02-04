@@ -6,7 +6,7 @@ import { ThemeProvider } from "@/context/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import ClientSessionProvider from "@/context/client-session-provider";
 import ogImg from "./opengraph-image.png";
-import { Analytics } from '@vercel/analytics/react';
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://gpt-notes-ten.vercel.app/"),
@@ -14,12 +14,10 @@ export const metadata: Metadata = {
     default: "GPT-Notes",
     template: "%s | GPT-Notes",
   },
-  description:
-    "An intelligent AI note-taking app built with Next.js, Shadcn UI, Vercel Postgres and Pinecone",
   openGraph: {
     title: "GPT-Notes",
     description:
-      "Take some notes and ask the chatbot some questions about your thoughts.",
+      "An intelligent AI app designed to enhance your productivity and organization.",
     images: [{ url: ogImg.src }],
   },
 };
