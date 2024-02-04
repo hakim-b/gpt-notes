@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/context/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import ClientSessionProvider from "@/context/client-session-provider";
 import ogImg from "./opengraph-image.png";
+import { Analytics } from '@vercel/analytics/react';
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://gpt-notes-ten.vercel.app/"),
@@ -43,6 +44,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
             disableTransitionOnChange
           >
             {children}
+            <Analytics />
             <Toaster />
           </ThemeProvider>
         </ClientSessionProvider>
