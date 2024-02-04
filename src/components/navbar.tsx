@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import {
   DropdownMenu,
@@ -31,10 +30,10 @@ const Navbar = () => {
     <>
       <div className="p-4 shadow dark:border">
         <div className="m-auto flex max-w-7xl flex-wrap items-center justify-between gap-3">
-          <Link href="/notes" className="flex items-center gap-1">
-            <Brain />
+          <div className="flex items-center gap-1">
+            <Brain size={20}/>
             <span className="font-bold">GPT-Notes</span>
-          </Link>
+          </div>
           <div className="flex items-center justify-center gap-4">
             <ModeToggle />
             <DropdownMenu>

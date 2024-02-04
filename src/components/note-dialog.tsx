@@ -69,6 +69,7 @@ function NoteDialog({ open, setOpen, notetoEdit }: NoteDialogProps) {
 
         form.reset();
       }
+
       router.refresh();
       setOpen(false);
     } catch (error) {

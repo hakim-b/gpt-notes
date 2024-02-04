@@ -39,11 +39,11 @@ export async function POST(req: Request) {
 
     let strOut = "You are an intelligent note taking app.\n";
     strOut += "You answer the user's question based on their existing notes\n";
-    strOut += "The relevant notes for this query are:\n";
+    strOut += "The relevant notes for this query are:\n\n";
 
     const formattedNotes = relevantNotes?.map((note: Note) => {
-      let str = `\nTitle: ${note.title}`;
-      str += `Content: ${note.content}`;
+      let str = `Title: ${note.title}\n`;
+      str += `Content: ${note.content}\n`;
       return str;
     });
 
