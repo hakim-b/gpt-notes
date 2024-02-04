@@ -165,7 +165,11 @@ function NoteDialog({ open, setOpen, notetoEdit }: NoteDialogProps) {
                   loading={form.formState.isSubmitting}
                   disabled={deleteInProgress}
                 >
-                  Submit
+                  {form.formState.isSubmitting
+                    ? "Loading..."
+                    : notetoEdit
+                      ? "Update"
+                      : "Submit"}
                 </LoadingButton>
               </DialogFooter>
             </form>
