@@ -7,6 +7,7 @@ import { Toaster } from "~/components/ui/toaster";
 import ClientSessionProvider from "~/context/client-session-provider";
 import ogImg from "./opengraph-image.png";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://gpt-notes-ten.vercel.app/"),
@@ -43,6 +44,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
           >
             {children}
             <Analytics />
+            <SpeedInsights />
             <Toaster />
           </ThemeProvider>
         </ClientSessionProvider>
