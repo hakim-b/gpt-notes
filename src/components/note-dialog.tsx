@@ -1,3 +1,5 @@
+"use client";
+
 import { CreateNote, createNoteSchema } from "~/types/notes-crud";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
