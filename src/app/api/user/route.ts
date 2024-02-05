@@ -20,7 +20,7 @@ export async function POST(req: Request) {
 
     // check if email exists
     const existingUserbyEmail = await prisma.user.findUnique({
-      where: { email: email },
+      where: { email },
     });
 
     if (existingUserbyEmail) {
@@ -29,13 +29,13 @@ export async function POST(req: Request) {
           user: null,
           message: "User with this email already exists",
         },
-        { status: 409 }
+        { status: 409 },
       );
     }
 
     // check if username already exists
     const existingUserByUsername = await prisma.user.findUnique({
-      where: { username: username },
+      where: { username },
     });
 
     if (existingUserByUsername) {
@@ -44,7 +44,7 @@ export async function POST(req: Request) {
           user: null,
           message: "This username has been taken",
         },
-        { status: 409 }
+        { status: 409 },
       );
     }
 
@@ -59,14 +59,14 @@ export async function POST(req: Request) {
         user: rest,
         message: "User created successfully.",
       },
-      { status: 201 }
+      { status: 201 },
     );
   } catch (error) {
     return NextResponse.json(
       {
         message: "Something went wrong",
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
