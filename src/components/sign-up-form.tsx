@@ -17,7 +17,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useToast } from "./ui/use-toast";
 import { Separator } from "./ui/separator";
-import GoogleLogo from "@/assets/google.svg";
+import GoogleLogo from "~/assets/google.svg";
 import { signIn } from "next-auth/react";
 
 const formSchema = z

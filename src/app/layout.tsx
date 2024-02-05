@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ReactNode } from "react";
 import { GeistSans } from "geist/font/sans";
-import { ThemeProvider } from "@/context/theme-provider";
-import { Toaster } from "@/components/ui/toaster";
-import ClientSessionProvider from "@/context/client-session-provider";
+import { ThemeProvider } from "~/context/theme-provider";
+import { Toaster } from "~/components/ui/toaster";
+import ClientSessionProvider from "~/context/client-session-provider";
 import ogImg from "./opengraph-image.png";
 import { Analytics } from "@vercel/analytics/react";
 

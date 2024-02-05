@@ -18,7 +18,7 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useToast } from "./ui/use-toast";
 import { Separator } from "./ui/separator";
-import GoogleLogo from "@/assets/google.svg";
+import GoogleLogo from "~/assets/google.svg";
 
 const FormSchema = z.object({
   email: z.string().min(1, "Email is required").email("Invalid email"),

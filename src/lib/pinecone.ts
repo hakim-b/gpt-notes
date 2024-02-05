@@ -1,4 +1,4 @@
-import { env } from "@/env/server";
+import { env } from "~/env/server";
 import { Pinecone } from "@pinecone-database/pinecone";
 
 const apiKey = env.PINECONE_API_KEY;

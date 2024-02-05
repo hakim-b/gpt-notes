@@ -1,4 +1,4 @@
-import { CreateNote, createNoteSchema } from "@/types/notes-crud";
+import { CreateNote, createNoteSchema } from "~/types/notes-crud";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import {
@@ -18,7 +18,7 @@ import {
 } from "./ui/form";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
-import LoadingButton from "./ui/loading-button";
+import LoadingButton from "./loading-button";
 import { useToast } from "./ui/use-toast";
 import { useRouter } from "next/navigation";
 import { Note } from "@prisma/client";

@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "~/lib/utils";
 import { Message } from "ai/react";
 import { Bot } from "lucide-react";
 import { useSession } from "next-auth/react";

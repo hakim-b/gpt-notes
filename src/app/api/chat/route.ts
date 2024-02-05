@@ -1,5 +1,5 @@
-import openAI, { getVectorEmbedding } from "@/lib/open-ai";
-import { notesIndex } from "@/lib/pinecone";
+import openAI, { getVectorEmbedding } from "~/lib/open-ai";
+import { notesIndex } from "~/lib/pinecone";
 import { getServerSession } from "next-auth";
 import { ChatCompletionMessage } from "openai/resources/index.mjs";
 import { OpenAIStream, StreamingTextResponse } from "ai";

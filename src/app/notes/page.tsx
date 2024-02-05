@@ -1,5 +1,5 @@
-import NoteCard from "@/components/note-card";
-import { authOptions } from "@/lib/auth";
+import NoteCard from "~/components/note-card";
+import { authOptions } from "~/lib/auth";
 import { Note } from "@prisma/client";
 import { Metadata } from "next";
 import { getServerSession } from "next-auth";

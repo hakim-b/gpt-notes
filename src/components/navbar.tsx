@@ -14,7 +14,7 @@ import {
 import { Button } from "./ui/button";
 import { Brain, LogOut, Plus } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
-import { getInitials } from "@/lib/utils";
+import { getInitials } from "~/lib/utils";
 import { useState } from "react";
 import NoteDialog from "./note-dialog";
 import { ModeToggle } from "./mode-toggle";

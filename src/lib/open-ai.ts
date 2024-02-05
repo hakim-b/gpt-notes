@@ -1,4 +1,4 @@
-import { env } from "@/env/server";
+import { env } from "~/env/server";
 import OpenAI from "openai";
 
 const apiKey = env.OPEN_AI_API_KEY;
