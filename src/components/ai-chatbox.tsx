@@ -49,7 +49,7 @@ function AIChatBox({ open, onClose }: AIChatBoxProps) {
           open ? "fixed" : "hidden",
         )}
       >
-        <div className="relative flex h-[600px] flex-col rounded border bg-background shadow-xl">
+        <div className="relative flex h-[600px] flex-col rounded-lg border bg-background shadow-xl">
           <button onClick={onClose} className="ms-auto block">
             <XCircle size={30} />
           </button>
