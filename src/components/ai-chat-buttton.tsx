@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import AIChatBox from "./ai-chatbox";
 import { Button } from "./ui/button";
