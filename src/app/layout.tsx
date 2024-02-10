@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     title: "GPT-Notes",
     description:
       "An intelligent AI app designed to enhance your productivity and organization.",
-    images: [{ url: ogImg.src }],
+    images: [{ url: ogImg }],
   },
 };
 
@@ -44,7 +44,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
           >
             {children}
             <Analytics />
-            <SpeedInsights />
+            <SpeedInsights/>
             <Toaster />
           </ThemeProvider>
         </ClientSessionProvider>
