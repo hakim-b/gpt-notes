@@ -8,6 +8,7 @@ import ClientSessionProvider from "~/context/client-session-provider";
 import ogImg from "./opengraph-image.png";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { cn } from "~/lib/utils";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://gpt-notes-ten.vercel.app/"),
@@ -29,12 +30,13 @@ type RootLayoutProps = {
 
 export default async function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html
-      lang="en"
-      className={`${GeistSans.variable}`}
-      suppressHydrationWarning
-    >
-      <body>
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={cn(
+          "min-h-screen bg-background font-sans antialiased",
+          GeistSans.variable,
+        )}
+      >
         <ClientSessionProvider>
           <ThemeProvider
             attribute="class"
@@ -44,7 +46,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
           >
             {children}
             <Analytics />
-            <SpeedInsights/>
+            <SpeedInsights />
             <Toaster />
           </ThemeProvider>
         </ClientSessionProvider>
