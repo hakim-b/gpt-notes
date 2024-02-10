@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     title: "GPT-Notes",
     description:
       "An intelligent AI app designed to enhance your productivity and organization.",
-    images: [{ url: ogImg }],
+    images: [{ url: ogImg.src }],
   },
 };
 
