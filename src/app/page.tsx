@@ -3,12 +3,7 @@ import { authOptions } from "~/lib/auth";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
 import { Brain } from "lucide-react";
-import { Metadata } from "next";
 import GitHubLogo from "~/assets/fa--github-alt.svg";
-
-export const metadata: Metadata = {
-  title: "Home",
-};
 
 async function Home() {
   const session = await getServerSession(authOptions);
