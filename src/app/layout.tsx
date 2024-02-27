@@ -22,6 +22,7 @@ export const metadata: Metadata = {
       "An intelligent AI app designed to enhance your productivity and organization.",
     images: [{ url: ogImg.src }],
   },
+  keywords: ["Notes", "notetaking", "AI notetaker", "AI notes"],
 };
 
 type RootLayoutProps = {

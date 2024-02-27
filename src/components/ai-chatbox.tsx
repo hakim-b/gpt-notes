@@ -1,12 +1,14 @@
 "use client";
 
 import { cn } from "~/lib/utils";
-import { useChat } from "ai/react";
+import { Message, useChat } from "ai/react";
 import { Bot, Trash, XCircle } from "lucide-react";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import ChatMessage from "./chat-message";
 import { useEffect, useRef } from "react";
+import { For } from "~/utils/for";
+import { If } from "~/utils/if";
 
 type AIChatBoxProps = {
   open: boolean;
@@ -54,16 +56,20 @@ function AIChatBox({ open, onClose }: AIChatBoxProps) {
             <XCircle size={30} />
           </button>
           <div className="mt-3 h-full overflow-y-auto px-3" ref={scrollRef}>
-            {messages.map((message) => (
-              <ChatMessage message={message} key={message.id} />
-            ))}
-            {isLoading && lastMsgFromUser && (
+            <For
+              each={messages}
+              render={(message: Message) => (
+                <ChatMessage message={message} key={message.id} />
+              )}
+            />
+            <If isTrue={isLoading && lastMsgFromUser}>
               <>
                 <ChatMessage
                   message={{ role: "assistant", content: "Thinking..." }}
                 />
               </>
-            )}
+            </If>
+            
             {error && (
               <ChatMessage
                 message={{
@@ -72,12 +78,13 @@ function AIChatBox({ open, onClose }: AIChatBoxProps) {
                 }}
               />
             )}
-            {!error && messages.length === 0 && (
+
+            <If isTrue={!error && messages.length === 0}>
               <div className="flex h-full items-center justify-center gap-3">
                 <Bot />
                 Ask the AI a question about your notes
               </div>
-            )}
+            </If>
           </div>
           <form onSubmit={handleSubmit} className="m-3 flex gap-1">
             <Button
