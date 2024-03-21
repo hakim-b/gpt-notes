@@ -31,7 +31,7 @@ const Navbar = () => {
       <div className="p-4 shadow dark:border">
         <div className="m-auto flex max-w-7xl flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-1">
-            <Brain size={20}/>
+            <Brain size={20} />
             <span className="font-bold">GPT-Notes</span>
           </div>
           <div className="flex items-center justify-center gap-4">

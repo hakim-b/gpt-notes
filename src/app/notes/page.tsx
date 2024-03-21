@@ -24,21 +24,22 @@ async function Notes() {
 
   return (
     <>
-      {/* @ts-ignore */}
       <Show>
-        <Show.When isTrue={allNotes?.length == 0}>
-          <h2 className="col-span-full text-center text-2xl font-bold">
-            You don&apos;t have any notes yet!
-          </h2>
-        </Show.When>
-        <Show.Else>
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            <For
-              each={allNotes!}
-              render={(note: Note) => <NoteCard note={note} key={note.id} />}
-            />
-          </div>
-        </Show.Else>
+        <>
+          <Show.When isTrue={allNotes?.length == 0}>
+            <h2 className="col-span-full text-center text-2xl font-bold">
+              You don&apos;t have any notes yet!
+            </h2>
+          </Show.When>
+          <Show.Else>
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              <For
+                each={allNotes!}
+                render={(note: Note) => <NoteCard note={note} key={note.id} />}
+              />
+            </div>
+          </Show.Else>
+        </>
       </Show>
     </>
   );

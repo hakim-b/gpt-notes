@@ -4,11 +4,11 @@ import { If } from "./if";
 import { type ReactNode } from "react";
 
 export const Show = (props: {
-  children: (ReactNode & {
+  children: ReactNode & {
     props: {
       isTrue?: boolean;
     };
-  });
+  };
 }) => {
   let when: ReactNode | null = null;
   let otherwise: ReactNode | null = null;

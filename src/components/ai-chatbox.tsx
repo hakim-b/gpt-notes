@@ -69,7 +69,7 @@ function AIChatBox({ open, onClose }: AIChatBoxProps) {
                 />
               </>
             </If>
-            
+
             {error && (
               <ChatMessage
                 message={{
