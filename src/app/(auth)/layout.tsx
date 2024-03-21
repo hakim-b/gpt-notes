@@ -1,10 +1,7 @@
-import { FC, ReactNode } from "react";
+import { FC } from "react";
+import { LayoutProps } from "~/types";
 
-interface AuthLayoutProps {
-  children: ReactNode;
-}
-
-const AuthLayout: FC<AuthLayoutProps> = ({ children }) => {
+const AuthLayout: FC<LayoutProps> = ({ children }) => {
   return (
     <div className="flex h-screen items-center justify-center">{children}</div>
   );

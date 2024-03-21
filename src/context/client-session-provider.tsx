@@ -1,13 +1,9 @@
 "use client";
 
 import { SessionProvider } from "next-auth/react";
-import { ReactNode } from "react";
+import { LayoutProps } from "~/types";
 
-type ClientSessionProviderProps = {
-  children: ReactNode;
-};
-
-function ClientSessionProvider({ children }: ClientSessionProviderProps) {
+function ClientSessionProvider({ children }: LayoutProps) {
   return (
     <>
       <SessionProvider basePath="/api/auth">{children}</SessionProvider>

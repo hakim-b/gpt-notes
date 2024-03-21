@@ -1,4 +1,9 @@
+import { ReactNode } from "react";
 import { z } from "zod";
+
+export type LayoutProps = {
+  children: ReactNode;
+};
 
 export const createNoteSchema = z.object({
   title: z.string().min(1, { message: "Title is required!" }),

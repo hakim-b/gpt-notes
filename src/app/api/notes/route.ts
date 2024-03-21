@@ -1,11 +1,7 @@
 import { authOptions } from "~/lib/auth";
 import { getVectorEmbedding } from "~/lib/open-ai";
 import { notesIndex } from "~/lib/pinecone";
-import {
-  createNoteSchema,
-  deleteNoteSchema,
-  updateNoteSchema,
-} from "~/types/notes-crud";
+import { createNoteSchema, deleteNoteSchema, updateNoteSchema } from "~/types";
 import { RecordMetadataValue } from "@pinecone-database/pinecone";
 import { getServerSession } from "next-auth";
 

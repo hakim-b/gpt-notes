@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { ReactNode } from "react";
 import { GeistSans } from "geist/font/sans";
 import { ThemeProvider } from "~/context/theme-provider";
 import { Toaster } from "~/components/ui/toaster";
@@ -9,6 +8,7 @@ import ogImg from "./opengraph-image.png";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { cn } from "~/lib/utils";
+import { LayoutProps } from "~/types";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://gpt-notes-ten.vercel.app/"),
@@ -25,11 +25,7 @@ export const metadata: Metadata = {
   keywords: ["Notes", "notetaking", "AI notetaker", "AI notes"],
 };
 
-type RootLayoutProps = {
-  children: ReactNode;
-};
-
-export default async function RootLayout({ children }: RootLayoutProps) {
+export default async function RootLayout({ children }: LayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body

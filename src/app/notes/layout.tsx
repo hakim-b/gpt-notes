@@ -1,11 +1,7 @@
 import Navbar from "~/components/navbar";
-import { ReactNode } from "react";
+import { LayoutProps } from "~/types";
 
-type NotesLayoutProps = {
-  children: ReactNode;
-};
-
-function NotesLayout({ children }: NotesLayoutProps) {
+function NotesLayout({ children }: LayoutProps) {
   return (
     <>
       <Navbar />
