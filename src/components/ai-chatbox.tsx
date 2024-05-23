@@ -70,14 +70,14 @@ function AIChatBox({ open, onClose }: AIChatBoxProps) {
               </>
             </If>
 
-            {error && (
+            <If isTrue={error !== undefined}>
               <ChatMessage
                 message={{
                   role: "assistant",
                   content: "Something went wrong. Please try again.",
                 }}
               />
-            )}
+            </If>
 
             <If isTrue={!error && messages.length === 0}>
               <div className="flex h-full items-center justify-center gap-3">
