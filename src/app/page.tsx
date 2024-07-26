@@ -4,7 +4,6 @@ import { getServerSession } from "next-auth";
 import Link from "next/link";
 import { Brain } from "lucide-react";
 import GitHubLogo from "~/assets/fa--github-alt.svg";
-import { Show } from "~/utils/show";
 
 async function Home() {
   const session = await getServerSession(authOptions);
@@ -36,23 +35,18 @@ async function Home() {
               </Link>
             </div>
             <div className="flex flex-col gap-2 min-[400px]:flex-row">
-              <Show>
-                <>
-                  <Show.When isTrue={session !== null}>
-                    <Link
-                      className={buttonVariants({ variant: "secondary" })}
-                      href="/notes/"
-                    >
-                      Open Notes
-                    </Link>
-                  </Show.When>
-                  <Show.Else>
-                    <Link className={buttonVariants()} href="/sign-up">
-                      Get Started
-                    </Link>
-                  </Show.Else>
-                </>
-              </Show>
+              {session ? (
+                <Link
+                  href="/notes"
+                  className={buttonVariants({ variant: "secondary" })}
+                >
+                  Open Notes
+                </Link>
+              ) : (
+                <Link href="/sign-up" className={buttonVariants()}>
+                  Get Started
+                </Link>
+              )}
             </div>
           </div>
         </div>

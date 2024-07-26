@@ -5,7 +5,6 @@ import { Message } from "ai/react";
 import { Bot } from "lucide-react";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
-import { If } from "~/utils/if";
 
 type MessageProps = {
   message: Pick<Message, "role" | "content">;
@@ -22,9 +21,7 @@ export default function ChatMessage({ message }: MessageProps) {
         isAIMsg ? "me-5 justify-start" : "me-5 justify-end",
       )}
     >
-      <If isTrue={isAIMsg}>
-        <Bot className="mr-2 shrink-0" />
-      </If>
+      {isAIMsg && <Bot className="mr-2 shrink-0" />}
       <p
         className={cn(
           "whitespace-pre-line rounded-md border px-1 py-2",
@@ -34,7 +31,7 @@ export default function ChatMessage({ message }: MessageProps) {
         {message.content}
       </p>
 
-      <If isTrue={(!isAIMsg && session?.user.image) as boolean}>
+      {!isAIMsg && session?.user.image && (
         <Image
           src={session?.user.image!}
           alt="User Image"
@@ -42,7 +39,7 @@ export default function ChatMessage({ message }: MessageProps) {
           height={100}
           className="ml-2 h-10 w-10 rounded-full object-cover"
         />
-      </If>
+      )}
     </div>
   );
 }
