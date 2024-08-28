@@ -50,6 +50,7 @@ export async function POST(req: Request) {
     const systemMessage: ChatCompletionMessage = {
       role: "assistant",
       content: strOut + formattedNotes?.join("\n\n"),
+      refusal: null,
     };
 
     const response = await openAI.chat.completions.create({

@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "~/lib/utils";
-import { Message, useChat } from "ai/react";
+import { useChat } from "ai/react";
 import { Bot, Trash, XCircle } from "lucide-react";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";

@@ -6,11 +6,11 @@ import { Bot } from "lucide-react";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 
-type MessageProps = {
+type ChatMessageProps = {
   message: Pick<Message, "role" | "content">;
 };
 
-export default function ChatMessage({ message }: MessageProps) {
+export default function ChatMessage({ message }: ChatMessageProps) {
   const { data: session } = useSession();
   const isAIMsg = message.role === "assistant";
 
