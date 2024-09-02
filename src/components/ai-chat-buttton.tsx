@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import AIChatBox from "./ai-chatbox";
+import AIChatBox from "./ai-chat-box";
 import { Button } from "./ui/button";
 import { Bot } from "lucide-react";
 
